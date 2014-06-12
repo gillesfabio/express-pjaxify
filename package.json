@@ -1,0 +1,43 @@
+{
+  "name": "express-pjaxify",
+  "version": "0.1.0",
+  "description": "Express middleware to pjaxify your views",
+  "main": "lib/index.js",
+  "private": true,
+  "license": "MIT",
+  "author": {
+    "name": "Gilles Fabio",
+    "email": "gilles@gillesfabio.com",
+    "url": "http://gillesfabio.com"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gillesfabio/express-pjaxify.git"
+  },
+  "bugs": {
+    "mail": "gilles@gillesfabio.com",
+    "url": "https://github.com/gillesfabio/express-pjaxify/issues"
+  },
+  "keywords": [
+    "express",
+    "pjax",
+    "pjaxify"
+  ],
+  "engines": {
+    "node": ">= 0.8.0"
+  },
+  "scripts": {
+    "test": "mocha --reporter spec test/specs/**/*.js"
+  },
+  "devDependencies": {
+    "chai": "^1.9.1",
+    "express": "^4.4.1",
+    "mocha": "^1.20.1",
+    "nunjucks": "^1.0.5",
+    "supertest": "^0.13.0"
+  },
+  "dependencies": {
+    "debug": "^1.0.1",
+    "lodash": "^2.4.1"
+  }
+}

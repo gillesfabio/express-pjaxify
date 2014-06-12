@@ -1,0 +1,9 @@
+{
+  "name": "express-pjaxify-example",
+  "private": true,
+  "dependencies": {
+    "jquery-pjax": "~1.8.2",
+    "jquery": "~2.1.1",
+    "bootstrap": "~3.1.1"
+  }
+}

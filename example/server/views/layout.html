@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap.min.css">
+    <link rel="stylesheet" href="/bootstrap/dist/css/bootstrap-theme.min.css">
+    <link rel="stylesheet" href="/app.css">
+  </head>
+  <body>
+    <div class="navbar navbar-inverse navbar-static-top" role="navigation">
+      <div class="container">
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/">express-pjaxify</a>
+        </div>
+        <div class="collapse navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="/" data-pjax id="home-link">Home</a></li>
+            <li><a href="/about" data-pjax id="about-link">About</a></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+      <iframe width="420" height="315" src="//www.youtube.com/embed/XbEz1mvQyvY" frameborder="0" allowfullscreen></iframe>
+      <div id="content">
+        {% block content %}
+        {% endblock %}
+      </div>
+    </div>
+    <script src="/jquery/dist/jquery.min.js"></script>
+    <script src="/jquery-pjax/jquery.pjax.js"></script>
+    <script src="/bootstrap/dist/js/bootstrap.min.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

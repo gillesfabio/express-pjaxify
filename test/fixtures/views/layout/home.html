@@ -1,0 +1,9 @@
+{% extends layout %}
+
+{% block title %}
+Home
+{% endblock %}
+
+{% block content %}
+<p>{% if isPjax %}pjax{% else %}no-pjax{% endif %}</p>
+{% endblock %}
