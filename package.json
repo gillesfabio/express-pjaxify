@@ -1,9 +1,8 @@
 {
   "name": "express-pjaxify",
-  "version": "0.1.0",
+  "version": "0.0.1",
   "description": "Express middleware to pjaxify your views",
   "main": "lib/index.js",
-  "private": true,
   "license": "MIT",
   "author": {
     "name": "Gilles Fabio",
