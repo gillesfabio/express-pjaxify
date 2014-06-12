@@ -17,16 +17,14 @@ describe('strategies', function() {
   var nunjucksEnv;
 
   describe('layout', function() {
-
     beforeEach(function() {
       app = express();
       nunjucksEnv = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join(VIEWS, 'layout')));
       nunjucksEnv.express(app);
+    });
+    it('should render regular view', function(done) {
       app.use(pjaxify({strategy: 'layout'}));
       app.get('/', function(req, res) { res.pjax('home.html', {layout: 'layout.html'}); });
-    });
-
-    it('should render regular view', function(done) {
       request(app)
         .get('/')
         .expect(assertions.isntPjax)
@@ -34,8 +32,30 @@ describe('strategies', function() {
           done(err);
         });
     });
-
     it('should render pjax view', function(done) {
+      app.use(pjaxify({strategy: 'layout'}));
+      app.get('/', function(req, res) { res.pjax('home.html', {layout: 'layout.html'}); });
+      request(app)
+        .get('/')
+        .set('X-PJAX', true)
+        .expect(assertions.isPjax)
+        .end(function(err) {
+          done(err);
+        });
+    });
+    it('should render default layout (regular requests)', function(done) {
+      app.use(pjaxify({strategy: 'layout'}));
+      app.get('/', function(req, res) { res.pjax('home.html'); });
+      request(app)
+        .get('/')
+        .expect(assertions.isntPjax)
+        .end(function(err) {
+          done(err);
+        });
+    });
+    it('should render default layout (pjax requests)', function(done) {
+      app.use(pjaxify({strategy: 'layout'}));
+      app.get('/', function(req, res) { res.pjax('home.html'); });
       request(app)
         .get('/')
         .set('X-PJAX', true)
@@ -47,16 +67,14 @@ describe('strategies', function() {
   });
 
   describe('view', function() {
-
     beforeEach(function() {
       app = express();
       nunjucksEnv = new nunjucks.Environment(new nunjucks.FileSystemLoader(path.join(VIEWS, 'view')));
       nunjucksEnv.express(app);
+    });
+    it('should render regular view', function(done) {
       app.use(pjaxify({strategy: 'view'}));
       app.get('/', function(req, res) { res.pjax('home.html'); });
-    });
-
-    it('should render regular view', function(done) {
       request(app)
         .get('/')
         .expect(assertions.isntPjax)
@@ -64,8 +82,9 @@ describe('strategies', function() {
           done(err);
         });
     });
-
     it('should render pjax view', function(done) {
+      app.use(pjaxify({strategy: 'view'}));
+      app.get('/', function(req, res) { res.pjax('home.html'); });
       request(app)
         .get('/')
         .set('X-PJAX', true)
@@ -75,5 +94,4 @@ describe('strategies', function() {
         });
     });
   });
-
 });

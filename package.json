@@ -1,6 +1,6 @@
 {
   "name": "express-pjaxify",
-  "version": "0.0.1",
+  "version": "0.1.0",
   "description": "Express middleware to pjaxify your views",
   "main": "lib/index.js",
   "license": "MIT",

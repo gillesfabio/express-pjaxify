@@ -179,6 +179,14 @@ The key name that contains the layout file path.
 
 Defaults to `layout`.
 
+### Option: `defaultLayout`
+
+Only used with the `layout` strategy.
+
+The default layout to inject in view context if `layout` is not set.
+
+Defaults to `layout.html`.
+
 ### Option: `pjaxViewFormat`
 
 The format used to dynamically set the pjax view based on the regular one.
