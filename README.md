@@ -31,7 +31,7 @@ Setup the strategy: `layout` or `view`.
 
 Let's take an example with [Nunjucks](http://mozilla.github.io/nunjucks/) template engine.
 
-The `layout.html` file (for no-pjax requests):
+The `layout.html` file (for regular requests):
 
 ```html
 <!DOCTYPE html>
@@ -46,8 +46,10 @@ The `layout.html` file (for no-pjax requests):
     <link rel="stylesheet" href="/app.css">
   </head>
   <body>
-    {% block content %}
-    {% endblock %}
+    <div id="pjax-container">
+      {% block content %}
+      {% endblock %}
+    </div>
   </body>
 </html>
 ```
@@ -78,19 +80,19 @@ Now, let's render the view with the provided `pjax` aware render function:
 app.use(pjaxify({strategy: 'layout'}));
 
 app.get('/page', function(req, res) {
-  res.pjax('page.html');
+  res.pjax('page.html', {layout: 'layout.html'});
 });
 ```
 
-The `layout` variable of `extends` block has been auto-injected by the middleware.
-So Nunjucks will load the appropriate layout if the request is either
-pjax or not.
+If the current request is pjax, `{layout: 'layout.html'}` will be auto-magically
+replaced by `{layout: 'layout.pjax.html'}`. You can override the pjax template
+name via the `pjaxViewFormat` option.
 
 #### `view` strategy example
 
 Let's take an example with [Swig](https://github.com/paularmstrong/swig) template engine.
 
-The `layout.html` file (for no-pjax requests):
+The `layout.html` file (for regular requests):
 
 ```html
 <!DOCTYPE html>
@@ -105,8 +107,10 @@ The `layout.html` file (for no-pjax requests):
     <link rel="stylesheet" href="/app.css">
   </head>
   <body>
-    {% block content %}
-    {% endblock %}
+    <div id="pjax-container">
+      {% block content %}
+      {% endblock %}
+    </div>
   </body>
 </html>
 ```
@@ -149,8 +153,9 @@ app.get('/page', function(req, res) {
 });
 ```
 
-The `pjax` function will render `page.pjax.html` or `page.html` either the request
-is pjax or not.
+If the current request is pjax, the `pjax` function will render `page.pjax.html`
+instead of `page.html`. You can override the pjax template name via the
+`pjaxViewFormat` option.
 
 ### Option: `pjaxHeader`
 
@@ -170,7 +175,7 @@ Defaults to `isPjax`.
 
 Only used with the `layout` strategy.
 
-The key name that contains the layout file path injected in view context.
+The key name that contains the layout file path.
 
 Defaults to `layout`.
 
