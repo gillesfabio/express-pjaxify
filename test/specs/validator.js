@@ -30,6 +30,11 @@ describe('validator', function() {
       expect(validator.validate.bind(null, {layoutKey: 123})).to.throw();
     });
 
+    it('should validate defaultLayout option', function() {
+      expect(validator.validate.bind(null, {defaultLayout: 'layout.html'})).to.not.throw();
+      expect(validator.validate.bind(null, {defaultLayout: 123})).to.throw();
+    });
+
     it('should validate pjaxViewFormat', function() {
       expect(validator.validate.bind(null, {pjaxViewFormat: '{name}.view{ext}'})).to.not.throw();
       expect(validator.validate.bind(null, {pjaxViewFormat: 'view'})).to.throw();
